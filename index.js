@@ -25,7 +25,47 @@ const LaunchRequestHandler = {
 };
 
 //implement custom handlers
+const reprobeHandler={
+    canHandle(handlerInput){
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name === 'reprobe'
 
+    },
+    handle(handlerInput){
+        let speechText='';
+        let displayText='';
+        let intent=handlerInput.requestEnvelope.request.intent;
+        let veces = intent.slots.veces.value;
+
+        if (veces){
+            let resultado=parseInt(veces);
+            if(veces ===1){
+                speechText='Ok amigo, no hay porqué alarmarse, solamente hay que volver a agendar tu materia en el siguiente semestre, de lo contrario caerás en artículo, héchale más ganas esta vez, tu puedes'
+            }
+            if (veces ===2){
+                speechText='Ok amigo, esta vez hay que solicitar por escrito a la Comisión de Educación del Consejo de Centro o de Escuela, antes del inicio del ciclo inmediato siguiente en que haya sido dado de baja, una nueva oportunidad para acreditar la materia o materias que adeudes'
+                displayText= 'Materia reprobada ${veces} veces'
+            }
+            if (veces ===3){
+
+            }
+
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .withSimpleCard(appName,displayText)
+            .withShouldEndSession(true)
+            .getResponse();
+
+            //perfom de operation
+        }else{
+            //Ask for required input
+            return handlerInput.responseBuilder
+            .addDelegateDirective(intent)
+            .getResponse();
+        }
+
+    }
+};
 
 //end Custom handlers
 
@@ -75,6 +115,7 @@ const SessionEndedRequestHandler = {
 //Remember to add custom request handlers here
 exports.handler = Alexa.SkillBuilders.custom()
      .addRequestHandlers(LaunchRequestHandler,
+                        reprobeHandler,
                          HelpIntentHandler,
                          CancelAndStopIntentHandler,
                          SessionEndedRequestHandler).lambda();
