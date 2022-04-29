@@ -4,7 +4,7 @@
 const Alexa = require('ask-sdk-core');
 
 //skill name
-const appName = '';
+const appName = 'Udg rescatame';
 
 //code for the handlers
 const LaunchRequestHandler = {
@@ -13,9 +13,9 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         //welcome message
-        let speechText = '';
+        let speechText = 'Lamento escuchar que te quiera dar de baja, recuerda que no todo está acabado y me alegraría poderte ayudar para guiarte con tus problemas escolares, esto es UDG rescatame';
         //welcome screen message
-        let displayText = ""
+        let displayText = "UDG al rescate"
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
@@ -36,7 +36,7 @@ const HelpIntentHandler = {
     },
     handle(handlerInput) {
         //help text for your skill
-        let speechText = '';
+        let speechText = 'Udg al rescate puede ayudarte a saber que hacer en ciertos casos, prueba diciendo reprobé una materia o tengo muchas faltas';
 
         return handlerInput.responseBuilder
             .speak(speechText)
@@ -53,7 +53,7 @@ const CancelAndStopIntentHandler = {
                 || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        let speechText = 'Goodbye';
+        let speechText = 'Si necesitas ayuda otra vez aquí estaré';
         return handlerInput.responseBuilder
             .speak(speechText)
             .withSimpleCard(appName, speechText)
