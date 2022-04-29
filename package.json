@@ -1,0 +1,28 @@
+{
+  "name": "alexa_skill",
+  "version": "1.0.0",
+  "description": "mi skill de alexa para el caso 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaulilloxone2/Alexa_Skill.git"
+  },
+  "keywords": [
+    "skill",
+    "udg",
+    "alexa"
+  ],
+  "author": "Saul Ezequiel Garcia Ramos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaulilloxone2/Alexa_Skill/issues"
+  },
+  "homepage": "https://github.com/zaulilloxone2/Alexa_Skill#readme",
+  "dependencies": {
+    "ask-sdk-core": "^2.12.1",
+    "ask-sdk-model": "^1.38.1"
+  }
+}
