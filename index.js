@@ -196,6 +196,43 @@ const faltaHandler={
     }
 };
 
+const promediosHandler={
+    canHandle(handlerInput){
+        return handlerInput.requestEnvelope.request.type ==='IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name ==='promedios';
+
+    },
+    handle(handlerInput){
+        let speechText='';
+        let displayText='';
+        let intent=handlerInput.requestEnvelope.request.intent;
+        let promedio = intent.slots.promedio.value;
+
+        if (promedio){
+            let resultado5=parseInt(promedio);
+            if(resultado5 >80){
+                speechText='<audio src="soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_01"/> Uff, en tu caso héchale más ganas, estás en la cuerda floja';
+            }
+            if (resultado5 <80){
+                speechText=' <audio src="soundbank://soundlibrary/horror/horror_05"/> Ni modo mi buen, según el artículo 35 de la ley orgánica,no se les autorizará su reingreso a la carrera o posgrado por el cual se les dio de baja. En el caso del bachillerato no se le autorizará su reingreso en ninguna de las modalidades educativas en que se ofrezca.';
+            }
+            return handlerInput.responseBuilder
+            .speak(speechText)
+            .withSimpleCard(appName,displayText)
+            .withShouldEndSession(true)
+            .getResponse();
+
+            //perfom de operation
+        }else{
+            //Ask for required input
+            return handlerInput.responseBuilder
+            .addDelegateDirective(intent)
+            .getResponse();
+        }
+
+    }
+};
+
 //end Custom handlers
 
 const HelpIntentHandler = {
@@ -248,6 +285,7 @@ exports.handler = Alexa.SkillBuilders.custom()
                         articulosHandler,
                         adeudoHandler,
                         faltaHandler,
+                        promediosHandler,
                          HelpIntentHandler,
                          CancelAndStopIntentHandler,
                          SessionEndedRequestHandler).lambda();
