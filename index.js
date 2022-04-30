@@ -13,9 +13,9 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         //welcome message
-        let speechText = 'Lamento escuchar que te quiera dar de baja, recuerda que no todo está acabado y me alegraría poderte ayudar para guiarte con tus problemas escolares, esto es UDG rescatame';
+        let speechText = 'Lamento escuchar que te quieras dar de baja, recuerda que no todo está acabado y me alegraría poderte ayudar para guiarte con tus problemas escolares, esto es U D G, rescátame, ¿porqué te quieres dar de baja?';
         //welcome screen message
-        let displayText = "UDG al rescate"
+        let displayText = "UDG al rescate";
         return handlerInput.responseBuilder
             .speak(speechText)
             .reprompt(speechText)
@@ -27,8 +27,8 @@ const LaunchRequestHandler = {
 //implement custom handlers
 const reprobeHandler={
     canHandle(handlerInput){
-        return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-        && handlerInput.requestEnvelope.request.intent.name === 'reprobe'
+        return handlerInput.requestEnvelope.request.type ==='IntentRequest'
+        && handlerInput.requestEnvelope.request.intent.name ==='reprobe';
 
     },
     handle(handlerInput){
@@ -39,14 +39,14 @@ const reprobeHandler={
 
         if (veces){
             let resultado=parseInt(veces);
-            if(veces ===1){
-                speechText='Ok amigo, no hay porqué alarmarse, solamente hay que volver a agendar tu materia en el siguiente semestre, de lo contrario caerás en artículo, héchale más ganas esta vez, tu puedes'
+            if(resultado ===1){
+                speechText='Ok amigo, no hay porqué alarmarse, solamente hay que volver a agendar tu materia en el siguiente semestre, de lo contrario caerás en artículo, héchale más ganas esta vez, tu puedes';
             }
-            if (veces ===2){
-                speechText='Ok amigo, esta vez hay que solicitar por escrito a la Comisión de Educación del Consejo de Centro o de Escuela, antes del inicio del ciclo inmediato siguiente en que haya sido dado de baja, una nueva oportunidad para acreditar la materia o materias que adeudes'
-                displayText= 'Materia reprobada ${veces} veces'
+            if (resultado ===2){
+                speechText='Ok amigo, esta vez hay que solicitar por escrito a la Comisión de Educación del Consejo de Centro o de Escuela, antes del inicio del ciclo inmediato siguiente en que haya sido dado de baja, una nueva oportunidad para acreditar la materia o materias que adeudes';
+                displayText= 'Materia reprobada ${veces} veces';
             }
-            if (veces ===3){
+            if (resultado===3){
 
             }
 
